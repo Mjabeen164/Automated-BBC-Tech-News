@@ -1,1 +1,38 @@
+name: Automated News Scraper
 
+on:
+  schedule:
+    - cron: "0 6 * * *"   # Runs every day at 6 AM UTC
+  workflow_dispatch:      # Allows manual trigger from Actions tab
+  push:                   # Runs when code is pushed to main branch
+    branches:
+      - main
+
+jobs:
+  run-scraper:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run scraper
+        run: python news_scraper_automation.py
+
+      - name: Commit & Push results
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add *.xlsx *.png || echo "No files to add"
+          git commit -m "🔄 Automated update: $(date +'%Y-%m-%d')" || echo "No changes to commit"
+          git push
