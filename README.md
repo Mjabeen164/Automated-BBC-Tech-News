@@ -1,5 +1,8 @@
 # 📰 Automated BBC Tech News Scraper with Charts & Scheduling
 
+![Automation
+Status](https://github.com/Mjabeen164/Automated-BBC-Tech-News/actions/workflows/automation.yml/badge.svg)
+
 This project automates the process of scraping the latest **BBC
 Technology News**, analyzing keywords, and generating reports with
 visualizations.
