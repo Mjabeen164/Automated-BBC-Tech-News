@@ -1,3 +1,6 @@
+![Automated News Scraper](project_banner_4.png)
+
+
 # 📰 Automated BBC Tech News Scraper with Charts & Scheduling
 
 ![Automation
